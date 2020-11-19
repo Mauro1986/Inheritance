@@ -6,9 +6,17 @@ using System.Threading.Tasks;
 
 namespace Inheritance               //belangrijk om weten: classes zijn altijd reference type
 {
-    public class Class1     // wanneer je geen constructor maakt, maakt compiler zelf 1
+    public class Class1 //parent van class 1 is object    
+        // wanneer je geen constructor maakt, maakt compiler zelf 1
     {                           // taak van constructor is variabelen initialiseren
-                                     //Moet Public zijn
+                                //Moet Public zijn
+        public int x;
+        public double btw = 21;
+        public Class1(int a) //900
+        {
+            x = a;
+            Console.WriteLine();
+        }
         public string Name { get; set; }
 
         public void Show1()
@@ -24,7 +32,7 @@ namespace Inheritance               //belangrijk om weten: classes zijn altijd r
     {                                   // taak van constructor is variabelen initialiseren  
                                         //Moet Public zijn
 
-        public Class2()
+        public Class2(int x) : base(x)   //base stuurt nodige parameters van child naar parent class
         {
             Console.WriteLine("I am class2 constructor");
         }
@@ -35,6 +43,10 @@ namespace Inheritance               //belangrijk om weten: classes zijn altijd r
         }
     }
 
+    public class Test //parent is objectclass
+    {
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -43,13 +55,20 @@ namespace Inheritance               //belangrijk om weten: classes zijn altijd r
             //c.Show1();
             //c.Show2();
             //c.Show3();
-            
-            //Class1 p = new Class1();
 
-            Class1 p;                   // variabele van parent class
-            Class2 c = new Class2();    // instantie van child class
-            p = c;
-            
+            //Class1 p = new Class1();
+            int x = 20;
+            double d = 30.25;
+
+            Class1 p = new Class1(10);
+            Console.WriteLine(p.GetType());
+            //Class1 p;                   // variabele van parent class
+            Class2 c = new Class2(900);    // instantie van child class
+            Console.WriteLine(c.GetType());                         //p = c;
+
+            Console.WriteLine(x.GetType());
+            Console.WriteLine(d.GetType());
+
         }
     }
 }
