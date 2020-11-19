@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Inheritance               
+namespace Inheritance               //belangrijk om weten: classes zijn altijd reference type
 {
     public class Class1     // wanneer je geen constructor maakt, maakt compiler zelf 1
     {                           // taak van constructor is variabelen initialiseren
@@ -39,12 +39,16 @@ namespace Inheritance
     {
         static void Main(string[] args)
         {
-            Class2 c = new Class2();
-            c.Show1();
-            c.Show2();
-            c.Show3();
+            //Class2 c = new Class2();
+            //c.Show1();
+            //c.Show2();
+            //c.Show3();
             
-            Class1 p = new Class1();
+            //Class1 p = new Class1();
+
+            Class1 p;                   // variabele van parent class
+            Class2 c = new Class2();    // instantie van child class
+            p = c;
             
         }
     }
