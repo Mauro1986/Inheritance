@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Inheritance               //belangrijk om weten: classes zijn altijd reference type
 {
     public class Class1 //parent van class 1 is object    
-        // wanneer je geen constructor maakt, maakt compiler zelf 1
+        // wanneer je geen constructor maakt, maakt compiler zelf een default constructor
     {                           // taak van constructor is variabelen initialiseren
                                 //Moet Public zijn
         public int x;
@@ -28,25 +28,28 @@ namespace Inheritance               //belangrijk om weten: classes zijn altijd r
             Console.WriteLine("I am class1 method show2");
         }
     }
-    public class Class2 : Class1    // wanneer je geen constructor maakt, maakt compiler zelf 1
-    {                                   // taak van constructor is variabelen initialiseren  
-                                        //Moet Public zijn
+    public class Class2 : Class1// : maakt inheritance    // wanneer je geen constructor maakt, maakt compiler zelf een default constructor
+    {                                                       // taak van constructor is variabelen initialiseren  
+                                                            //Moet Public zijn
 
         public Class2(int x) : base(x)   //base stuurt nodige parameters van child naar parent class
         {
             Console.WriteLine("I am class2 constructor");
         }
         public int Age { get; set; }
+       
         public void Show3()
         {
             Console.WriteLine("I am method show3");
         }
-    }
 
-    public class Test //parent is objectclass
-    {
+        public override string ToString()
+        {
+            //return base.ToString();
+            string s = $"NAME: {Name} AGE: {Age} BTW: {btw}%    Dit is mijn versie(override)";
+            return s;
+        }
     }
-
     class Program
     {
         static void Main(string[] args)
@@ -58,17 +61,20 @@ namespace Inheritance               //belangrijk om weten: classes zijn altijd r
 
             //Class1 p = new Class1();
             int x = 20;
-            double d = 30.25;
+            //double d = 30.25;
 
-            Class1 p = new Class1(10);
-            Console.WriteLine(p.GetType());
-            //Class1 p;                   // variabele van parent class
+            //Class1 p = new Class1(10);
+            //Console.WriteLine(p.GetType());
+            ////Class1 p;                   // variabele van parent class
             Class2 c = new Class2(900);    // instantie van child class
-            Console.WriteLine(c.GetType());                         //p = c;
+            //Console.WriteLine(c.GetType());                         //p = c;
 
-            Console.WriteLine(x.GetType());
-            Console.WriteLine(d.GetType());
+            //Console.WriteLine(x.GetType());
+            //Console.WriteLine(d.GetType());
+            c.Name = "Toon";
+            c.Age = 32;
 
+            Console.WriteLine(c.ToString());
         }
     }
 }
